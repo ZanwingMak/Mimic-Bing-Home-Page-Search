@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatitle" content="IE=edge"/>
+    <title>搜索框</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: #666;
+        }
+        body{
+            background-color: #333;
+        }
+        .bg{
+            margin: 0 auto;
+            max-width: 1920px;
+            max-height: 1080px;
+            /*height: 920px;*/
+        }
+
+        .box{
+            /*height: 91%;*/
+            position: relative;
+            opacity: 1;
+            background: url('BeaujolaisNouveau_ZH-CN8322497216_1920x1080.jpg') no-repeat 100%;
+        }
+        .search-box{
+            position: absolute;
+            top: 20%;
+            left: 8%;
+        }
+        .search-box img{
+            float: left;
+        }
+        .search{
+            float: left;
+            margin: 5px 0 0 15px;
+        }
+        .search-text{
+            width: 500px;
+            height: 45px;
+            border: none;
+            float: left;
+            font-family: "Microsoft YaHei UI";
+            font-size: 18px;
+            padding:0 10px 0 10px;
+        }
+        .search-btn{
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: #0c8484 url('hpc18.png') no-repeat;
+            background-position: -160px -55px;
+            overflow: hidden;
+            float: left;
+            cursor: pointer;
+        }
+
+        .header{
+            /*height: 7%;*/
+        }
+        .header ul{
+            font-family: "Microsoft YaHei UI";
+            font-size: 14px;
+            color: #acacac;
+            display: inline;
+            /*margin: 15px 0;*/
+        }
+        .header ul a{
+            color: #acacac;
+        }
+        .header .left{
+            float: left;
+            margin-left: 45px;
+        }
+        .header .right{
+            float: right;
+            margin-right: 20px;
+        }
+        .header li{
+            margin: 0 20px;
+            display: inline;
+        }
+
+        .footer{
+            /*height: 2%;*/
+        }
+        .footer ul{
+            margin: 14px;
+            text-align: right;
+            font-family: "Microsoft YaHei UI";
+            font-size: 12px;
+            color: #666;
+        }
+        .footer li{
+            display: inline;
+        }
+        .footer a,.footer span{
+            display: inline;
+            margin: 0 10px;
+        }
+
+        #search-suggest{
+            position: absolute;
+            width: 565px;
+            background-color: #fff;
+            /*border: 1px solid #999;*/
+            display: none;
+        }
+        #search-suggest ul li{
+            padding: 10px;
+            font-family: "Microsoft YaHei UI";
+            font-size: 14px;
+            line-height: 25px;
+            cursor: pointer;
+        }
+        #search-suggest ul li:hover{
+            text-decoration: underline;
+            background-color: #999999;
+        }
+
+        /* 设置了浏览器高度大于等于min-height时 */
+        @media screen and (min-height: 0px) {
+            .bg {height: 450px;}
+            .header{height: 7%;}
+            .footer{height: 2%;}
+            .box{height: 91%;}
+            .header ul{margin: 14px 0;}
+        }
+        @media screen and (min-height: 520px) {
+            .bg {height: 500px;}
+            .header{height: 7%;}
+            .footer{height: 2%;}
+            .box{height: 91%;}
+            .header ul{margin: 14px 0;}
+        }
+        @media screen and (min-height: 540px) {
+            .bg {height: 520px;}
+            .header{height: 7%;}
+            .footer{height: 2%;}
+            .box{height: 91%;}
+            .header ul{margin: 14px 0;}
+        }
+        @media screen and (min-height: 580px) {
+            .bg {height: 560px;}
+            .header{height: 7%;}
+            .footer{height: 2%;}
+            .box{height: 91%;}
+            .header ul{margin: 14px 0;}
+        }
+        @media screen and (min-height: 600px) {
+            .bg {height: 580px;}
+            .header{height: 7%;}
+            .footer{height: 2%;}
+            .box{height: 91%;}
+            .header ul{margin: 14px 0;}
+        }
+        @media screen and (min-height: 740px) {
+            .bg {height: 720px;}
+            .header{height: 7%;}
+            .footer{height: 2%;}
+            .box{height: 91%;}
+            .header ul{margin: 14px 0;}
+        }
+        @media screen and (min-height: 800px) {
+            .bg {height: 780px;}
+            .header{height: 7%;}
+            .footer{height: 2%;}
+            .box{height: 91%;}
+            .header ul{margin: 14px 0;}
+        }
+        @media screen and (min-height: 940px) {
+            .bg {height: 920px;}
+            .header{height: 5%;}
+            .footer{height: 2%;}
+            .box{height: 93%;}
+            .header ul{margin: 14px 0;}
+        }
+        @media screen and (min-height: 970px) {
+            .bg {height: 950px;}
+            .header{height: 5%;}
+            .footer{height: 2%;}
+            .box{height: 93%;}
+            .header ul{margin: 14px 0;}
+        }
+
+    </style>
+</head>
+<body>
+<div class="bg">
+    <div class="header">
+            <ul class="left">
+                <li><a href="javascript:void(0);">图片</a></li>
+                <li><a href="javascript:void(0);">视频</a></li>
+                <li><a href="javascript:void(0);">学术</a></li>
+                <li><a href="javascript:void(0);">地图</a></li>
+                <li><a href="javascript:void(0);">更多</a></li>
+                <li>|</li>
+                <li><a href="javascript:void(0);">Office Online</a></li>
+                <li><a href="javascript:void(0);">Outlook.com</a></li>
+            </ul>
+            <ul class="right">
+                <li><a href="javascript:void(0);">Switch to Bing in English</a></li>
+                <li>|</li>
+                <li><a href="javascript:void(0);">登录</a></li>
+                <li><a href="javascript:void(0);"></a></li>
+            </ul>
+    </div>
+    <div class="box">
+        <div class="search-box">
+            <img src="hp_zh_cn.png">
+            <div class="search">
+                <form name="search-form" action="https://cn.bing.com/search">
+                    <input type="text" class="search-text" name="q" AutoComplete="off" x-webkit-speech=""/>
+                    <input type="submit" class="search-btn" value=""/>
+                </form>
+            </div>
+        </div>
+        <div class="suggest" id="search-suggest">
+            <!--<ul>-->
+                <!--<li>搜索结果1</li>-->
+                <!--<li>搜索结果2</li>-->
+                <!--<li>搜索结果3</li>-->
+                <!--<li>搜索结果4</li>-->
+                <!--<li>搜索结果5</li>-->
+            <!--</ul>-->
+        </div>
+    </div>
+    <div class="footer">
+        <ul>
+            <li><span>© 2016 Microsoft</span></li>
+            <li> | <span>京ICP备10036305号</span></li>
+            <li> | <a href="javascript:void(0);">新的隐私声明和 Cookie</a></li>
+            <li> | <a href="javascript:void(0);">新的法律声明</a></li>
+            <li> | <a href="javascript:void(0);">广告</a></li>
+            <li> | <a href="javascript:void(0);">举报问题</a></li>
+            <li> | <a href="javascript:void(0);">帮助</a></li>
+            <li> | <a href="javascript:void(0);">反馈</a></li>
+        </ul>
+    </div>
+</div>
+<script src="jquery-3.1.1.min.js"></script>
+<script>
+    function h() {
+        var h = $(window).height();
+        $('.bg').css({'height':h-30});
+    }
+    h();
+    $(window).resize(function(){h();});
+    var search = $('.search');
+    var suggest = $('#search-suggest');
+    var search_text = $('.search-text');
+    search_text.on('input propertychange',function(){
+        var search_text = $('.search-text').val();
+//        var randNum = parseInt(Math.random()*100000);
+//        https://cn.bing.com/AS/Suggestions?qry='+search_text+'&cvid='+randNum  返回ul整个html标签
+        if(search_text.trim()){
+            $.ajax({
+                type:'GET',
+                url:'http://api.bing.com/qsonhs.aspx?type=cb&q='+search_text, //callback要与下面的jsonp的值一致
+                dataType:'jsonp',
+                jsonp:'cb',//这里要看服务器那边的参数是什么，
+                           //实际的url会转换成：http://api.bing.com/qsonhs.aspx?type=cb&q=搜索关键词&cb=jQuery3110057373895684477594_1479342920984&_=1479342920985
+                success:function(data){
+//                console.log(data.AS.Results[0].Suggests);
+                    if(typeof(data.AS.Results) == 'undefined'){
+                        suggest.html('');
+                        suggest.stop().hide();
+                    }else{
+                        var result_html = '';
+                        $.each(data.AS.Results[0].Suggests,function(index,val){
+                            result_html += '<li url="'+val.Url+'">'+val.Txt+'</li>';
+                        });
+                        suggest.html('<ul>'+result_html+'</ul>');
+                    }
+                },
+                error:function(jqXHR){
+                    console.log('发生错误:'+jqXHR.status);
+                }
+            });
+            suggest.show().css({
+                top:search.offset().top-1,
+                left:search.offset().left
+            });
+        }else{
+            suggest.html('');
+            suggest.stop().hide();
+        }
+    });
+    $(document).click(function(event){
+//        console.log(event.target.className);
+        if(event.target.className == 'search-text'){
+            if($('#search-suggest ul li').length){
+                suggest.show().css({
+                    top:search.offset().top-1,
+                    left:search.offset().left
+                });
+            }
+        }else{
+            suggest.stop().hide();
+        }
+    });
+    suggest.on('click','li',function(){
+        var url = $(this).attr('url');
+        location.href = url;
+    });
+//    suggest.on('mouseover','li',function(){
+//        search_text.val($(this).text());
+//    });
+</script>
+</body>
+</html>
